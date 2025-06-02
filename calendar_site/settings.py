@@ -7,7 +7,13 @@ SECRET_KEY = 'your-secret-key'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',
+]
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,3 +71,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+import os
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
