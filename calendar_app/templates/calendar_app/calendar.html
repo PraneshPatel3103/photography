@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hariprabodham Photography</title>
     <style>
         body {
@@ -22,13 +23,13 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 10px;
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
         .day, .date {
             background-color: #fff;
-            padding: 20px;
+            padding: 40px;
             font-size: 20px;
             border: 2px solid #ddd;
             border-radius: 6px;
@@ -40,7 +41,7 @@
         }
 
         .date:hover {
-            background-color: #e0e0e0;
+            background-color: #2697d0;
             cursor: pointer;
         }
 
@@ -95,17 +96,13 @@
     <h2>{{ month_name }} {{ year }}</h2>
 
     <div class="calendar">
-        {% for day in weekdays %}
-            <div class="day">{{ day }}</div>
-        {% endfor %}
-
-        {% for day, link in month_days %}
-            {% if day == 0 %}
-                <div class="date">&nbsp;</div>
-            {% else %}
-                <div class="date" onclick="handleClick('{{ link|default:'' }}')">{{ day }}</div>
-            {% endif %}
-        {% endfor %}
-    </div>
+    {% for day in month_days %}
+        {% if day.0 == 0 %}
+            <div class="date">&nbsp;</div>
+        {% else %}
+            <div class="date" onclick="handleClick('{{ day.1|default:'' }}')">{{ day.0.day }}</div>
+        {% endif %}
+    {% endfor %}
+</div>
 </body>
 </html>
