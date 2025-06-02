@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hariprabodham Photography</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .day, .date {
+            background-color: #fff;
+            padding: 20px;
+            font-size: 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .day {
+            font-weight: bold;
+            background-color: #ddd;
+        }
+
+        .date:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        .nav {
+            margin: 20px 0;
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function handleClick(link) {
+            if (link) {
+                window.location.href = link;
+            } else {
+                alert("No data found for this date.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Hariprabodham Photography</h1>
+    <div class="nav">
+        {% with prev_month=month|add:"-1" next_month=month|add:"1" %}
+            {% if month == 1 %}
+                {% with prev_month=12 prev_year=year|add:"-1" %}
+                    <a href="{% url 'calendar_by_date' year=prev_year month=prev_month %}">Previous</a>
+                {% endwith %}
+            {% else %}
+                <a href="{% url 'calendar_by_date' year=year month=prev_month %}">Previous</a>
+            {% endif %}
+
+            &nbsp;|&nbsp;
+
+            {% if month == 12 %}
+                {% with next_month=1 next_year=year|add:"1" %}
+                    <a href="{% url 'calendar_by_date' year=next_year month=next_month %}">Next</a>
+                {% endwith %}
+            {% else %}
+                <a href="{% url 'calendar_by_date' year=year month=next_month %}">Next</a>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <h2>{{ month_name }} {{ year }}</h2>
+
+    <div class="calendar">
+        {% for day in weekdays %}
+            <div class="day">{{ day }}</div>
+        {% endfor %}
+
+        {% for day, link in month_days %}
+            {% if day == 0 %}
+                <div class="date">&nbsp;</div>
+            {% else %}
+                <div class="date" onclick="handleClick('{{ link|default:'' }}')">{{ day }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
