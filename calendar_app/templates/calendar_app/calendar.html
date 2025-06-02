@@ -58,6 +58,22 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* Responsive styles for mobile devices */
+    @media (max-width: 768px) {
+    .calendar {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+    }
+    .date {
+        padding: 20px; /* Adjust padding for mobile */
+        font-size: 16px; /* Smaller font size for dates */
+        border-radius: 4px; /* Slightly rounded corners */
+    }
+    .day {
+        font-weight: bold;
+        background-color: #ddd; /* Background for day headers */
+        text-align: center; /* Center text */
+    }}
     </style>
     <script>
         function handleClick(link) {
