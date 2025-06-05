@@ -11,7 +11,9 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-e501c.up.railway.app',
+    'https://hariprabodhamphotography.up.railway.app',  # Add this
 ]
+
 
 
 
