@@ -11,7 +11,7 @@
     <title>HARIPRABODHAM PHOTOGRAPHY</title>
     <style>
         #animated-title {
-            font-weight: 300 !important;
+            font-weight: 700 !important;
         }
     </style>
     <script>
@@ -19,8 +19,12 @@
             const title = document.getElementById("animated-title");
             if (title) {
                 title.style.fontWeight = "700";
-                title.style.color = "#FF8C00"; // dark orange hex code
+                title.style.color = "#FF8C00";
                 title.style.opacity = 0;
+                title.style.fontSize = "clamp(20px, 7vw, 48px)"; // Responsive font size
+                title.style.wordBreak = "break-word";
+                title.style.maxWidth = "100vw";
+                title.style.overflowWrap = "break-word";
                 title.animate([
                     { opacity: 0 },
                     { opacity: 1 }
