@@ -151,35 +151,48 @@
             to { opacity: 1; transform: scale(1);}
         }
 
-        /* Responsive styles for mobile devices */
         @media (max-width: 768px) {
-            .calendar {
-                grid-template-columns: repeat(4, 1fr);
-                max-width: 100%;
-                padding: 10px 2px 2px 2px;
-                border-radius: 8px;
-            }
-            .date, .day {
-                padding: 14px 0;
-                font-size: 16px;
-                border-radius: 6px;
-            }
-            h1 {
-                font-size: 22px;
-                margin-bottom: 18px;
-            }
-            .nav {
-                font-size: 16px;
-                gap: 10px;
-            }
-            .fade-in {
-                font-size: 16px;
-            }
-            footer img {
-                height: 24px !important;
-            }
-        }
-        
+    body {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2.fade-in {
+        font-size: 20px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px 10px;
+        max-width: 100%;
+    }
+
+    .day, .date {
+        font-size: 18px;
+        border-radius: 8px;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; /* Remove vertical padding to maintain square shape */
+    }
+
+    .nav {
+        font-size: 18px;
+        gap: 12px;
+    }
+
+    a {
+        font-size: 20px;
+    }
+
+    footer img {
+        height: 28px;
+    }
+}
         /* Make calendar bigger on desktop */
         .calendar {
             max-width: 1400px;
