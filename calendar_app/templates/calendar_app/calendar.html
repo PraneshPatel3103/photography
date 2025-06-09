@@ -4,77 +4,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="calendar_app/templates/logo.png" type="image/png">
-    <title>HariPrabodham Photography</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'calendar_app/logo.png' %}" type="image/png">
+    <!-- Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <title>HARIPRABODHAM PHOTOGRAPHY</title>
+    <style>
+        #animated-title {
+            font-weight: 700 !important;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const title = document.getElementById("animated-title");
+            if (title) {
+                title.style.fontWeight = "700";
+                title.style.color = "#FF8C00"; // dark orange hex code
+                title.style.opacity = 0;
+                title.animate([
+                    { opacity: 0 },
+                    { opacity: 1 }
+                ], {
+                    duration: 1200,
+                    fill: "forwards"
+                });
+                setTimeout(() => {
+                    title.style.opacity = 1;
+                }, 1200);
+            }
+        });
+    </script>
+    <style>
+        #animated-title {
+            font-family: 'Montserrat', sans-serif !important;
+            letter-spacing: 2px;
+            color: #333;
+            transition: color 0.8s, letter-spacing 0.8s;
+        }
+    </style>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             text-align: center;
             padding: 40px;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            min-height: 100vh;
         }
 
         h1 {
             font-size: 36px;
             margin-bottom: 30px;
             color: #333;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #e0eafc;
         }
 
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            max-width: 100%;
-            margin: 0 auto;
+            gap: 8px;
+            max-width: 1100px;
+            max-height: fit-content;
+            margin: 30px auto 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+            padding: 20px 10px 10px 10px;
+            animation: fadeIn 1s;
         }
 
         .day, .date {
-            background-color: #fff;
-            padding: 40px;
-            font-size: 20px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
+            padding: 18px 0;
+            font-size: 22px;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            box-shadow: 0 1px 3px rgba(44, 62, 80, 0.04);
+            position: relative;
         }
 
         .day {
             font-weight: bold;
-            background-color: #ddd;
+            background: linear-gradient(90deg, #f3f3f3 60%, #e9e9e9 100%);
+            color: #2697d0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e0eafc;
+            animation: slideDown 0.7s;
+        }
+
+        .date {
+            background: #f9fafb;
+            color: #333;
+            cursor: pointer;
+            border: 1px solid #e3e8ee;
+            animation: popIn 0.5s;
         }
 
         .date:hover {
-            background-color: #2697d0;
-            cursor: pointer;
+            background: linear-gradient(135deg, #2697d0 60%, #6dd5ed 100%);
+            color: #fff;
+            transform: scale(1.07) translateY(-2px);
+            box-shadow: 0 4px 16px rgba(38,151,208,0.15);
+            z-index: 2;
+        }
+
+        .date:active {
+            background: #176ca7;
+            color: #fff;
+            transform: scale(0.98);
         }
 
         .nav {
             margin: 20px 0;
-            font-size: 20px;
+            font-size: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            animation: fadeIn 1.2s;
         }
 
         a {
             text-decoration: none;
-            color: #007bff;
+            color: #2697d0;
+            font-weight: bold;
+            transition: color 0.2s;
+            font-size: 24px;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #176ca7;
+            text-shadow: 0 2px 8px #e0eafc;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8);}
+            to { opacity: 1; transform: scale(1);}
         }
 
         /* Responsive styles for mobile devices */
-    @media (max-width: 768px) {
-    .calendar {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
-    }
-    .date {
-        padding: 20px; /* Adjust padding for mobile */
-        font-size: 16px; /* Smaller font size for dates */
-        border-radius: 4px; /* Slightly rounded corners */
-    }
-    .day {
-        font-weight: bold;
-        background-color: #ddd; /* Background for day headers */
-        text-align: center; /* Center text */
-    }}
+        @media (max-width: 768px) {
+            .calendar {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 98vw;
+                padding: 10px 2px 2px 2px;
+            }
+            .date, .day {
+                padding: 12px 0;
+                font-size: 15px;
+                border-radius: 6px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .nav {
+                font-size: 16px;
+            }
+        }
     </style>
     <script>
         function handleClick(link) {
@@ -85,41 +180,56 @@
             }
         }
     </script>
+   
 </head>
 <body>
-    <h1>Hariprabodham Photography</h1>
+    
+    <h1 id="animated-title" style="font-family: 'Montserrat', sans-serif; transition: color 0.8s;">Hariprabodham Photography</h1>
     <div class="nav">
         {% with prev_month=month|add:"-1" next_month=month|add:"1" %}
             {% if month == 1 %}
                 {% with prev_month=12 prev_year=year|add:"-1" %}
-                    <a href="{% url 'calendar_by_date' year=prev_year month=prev_month %}">Previous</a>
+                    <a href="{% url 'calendar_by_date' year=prev_year month=prev_month %}" title="Previous Month">&#x25C0;</a>
                 {% endwith %}
             {% else %}
-                <a href="{% url 'calendar_by_date' year=year month=prev_month %}">Previous</a>
+                <a href="{% url 'calendar_by_date' year=year month=prev_month %}" title="Previous Month">&#x25C0;</a>
             {% endif %}
 
             &nbsp;|&nbsp;
 
             {% if month == 12 %}
                 {% with next_month=1 next_year=year|add:"1" %}
-                    <a href="{% url 'calendar_by_date' year=next_year month=next_month %}">Next</a>
+                    <a href="{% url 'calendar_by_date' year=next_year month=next_month %}" title="Next Month">&#x25B6;</a>
                 {% endwith %}
             {% else %}
-                <a href="{% url 'calendar_by_date' year=year month=next_month %}">Next</a>
+                <a href="{% url 'calendar_by_date' year=year month=next_month %}" title="Next Month">&#x25B6;</a>
             {% endif %}
         {% endwith %}
     </div>
 
-    <h2>{{ month_name }} {{ year }}</h2>
+    <h2 class="fade-in">{{ month_name }} {{ year }}</h2>
+    <style>
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+    </style>
 
-    <div class="calendar">
-    {% for day in month_days %}
-        {% if day.0 == 0 %}
-            <div class="date">&nbsp;</div>
-        {% else %}
-            <div class="date" onclick="handleClick('{{ day.1|default:'' }}')">{{ day.0.day }}</div>
-        {% endif %}
-    {% endfor %}
+<div class="calendar">
+{% for day in month_days %}
+    {% if day.0 == 0 %}
+        <div class="date">&nbsp;</div>
+    {% else %}
+        <div class="date" onclick="handleClick('{{ day.1|default:'' }}')">{{ day.0.day }}</div>
+    {% endif %}
+{% endfor %}
 </div>
+
+
+<footer style="margin-top: 40px; padding: 20px 0; background: none; text-align: center;">
+    <a href="https://www.youtube.com/@iHariPrabodham" target="_blank" title="Visit our YouTube channel" style="display: inline-block;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height: 36px; vertical-align: middle;">
+    </a>
+</footer>
 </body>
 </html>
