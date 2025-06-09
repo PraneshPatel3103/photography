@@ -166,32 +166,36 @@
             }
 
             .calendar {
-                grid-template-columns: repeat(4, 1fr);
-                padding: 10px 10px;
-                max-width: 100%;
+                grid-template-columns: repeat(7, 1fr);
+                padding: 5px 2px;
+                max-width: 100vw;
+                overflow-x: auto;
             }
 
             .day, .date {
-                font-size: 14px;
+                font-size: 12px;
                 border-radius: 8px;
                 aspect-ratio: 1 / 1;
+                width: 100%;
+                min-width: 36px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: 0; /* Remove vertical padding to maintain square shape */
+                box-sizing: border-box;
             }
 
             .nav {
-                font-size: 18px;
-                gap: 12px;
+                font-size: 16px;
+                gap: 8px;
             }
 
             a {
-                font-size: 20px;
+                font-size: 16px;
             }
 
             footer img {
-                height: 28px;
+                height: 24px;
             }
         }
         /* Make calendar bigger on desktop */
